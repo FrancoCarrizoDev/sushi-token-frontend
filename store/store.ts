@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from '../features/counter/counterSlice'
+import { counterReducer, hellowReducer } from '../features'
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer
+    counter: counterReducer,
+    hellow: hellowReducer
   }
 })
 

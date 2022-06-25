@@ -1,20 +1,24 @@
 import { useQuery } from '@apollo/client'
+import { Button, Text } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from '../features/counter/counterSlice'
+import { increment, decrement, incrementByAmount } from '../features/counter/counterSlice'
+import { greeting } from '../features/hellow/hellowSlice'
 import { UserDocument } from '../generated'
 import { RootState } from '../store/store'
 import styles from '../styles/Home.module.css'
-
+import { Input } from '@chakra-ui/react'
 const Home: NextPage = () => {
   const { data, error, loading } = useQuery(UserDocument)
 
   const count = useSelector((state: RootState) => state.counter.value)
-  console.log(count)
+
+  const hellow = useSelector((state: RootState) => state.hellow.hellow)
+
   const dispatch = useDispatch()
-  console.log(data)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -26,13 +30,23 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <div>
           <div>
-            <button aria-label='Increment value' onClick={() => dispatch(increment())}>
+            <Button aria-label='Increment value' onClick={() => dispatch(increment())}>
               Increment
-            </button>
+            </Button>
             <span>{count}</span>
-            <button aria-label='Decrement value' onClick={() => dispatch(decrement())}>
+            <Button aria-label='Decrement value' onClick={() => dispatch(decrement())}>
               Decrement
-            </button>
+            </Button>
+            <Button aria-label='Decrement value' onClick={() => dispatch(incrementByAmount(10))}>
+              Increment 10
+            </Button>
+          </div>
+          <div>
+            <Input
+              placeholder='Ingrese su nombre'
+              onChange={(e) => dispatch(greeting(e.target.value))}
+            />
+            <Text>{hellow}</Text>
           </div>
         </div>
       </main>
