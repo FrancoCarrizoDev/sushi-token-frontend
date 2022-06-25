@@ -1,0 +1,9 @@
+query User {
+  greetings {
+    data {
+      attributes {
+        user
+      }
+    }
+  }
+}
