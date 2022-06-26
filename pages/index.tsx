@@ -22,7 +22,7 @@ const Home: NextPage = () => {
 
   return (
     <MainLayout title='Main Page' pageDescription='Suhi Page'>
-      <h1>Hola Mundo!</h1>
+      <></>
     </MainLayout>
   )
 }
