@@ -40,26 +40,3 @@ export const MainLayout: FC<Props> = ({ children, title, pageDescription, imageF
     </>
   )
 }
-
-/*
-
- <Heading
-                as='h1'
-                size='xl'
-                color={'white'}
-                fontWeight='600'
-                display={'flex'}
-                alignItems='center'
-              >
-                <Box
-                  as='span'
-                  padding={2}
-                  backgroundColor='hsl(18deg 86% 48%)'
-                  borderRadius={'full'}
-                  marginRight={2}
-                >
-                  <BiRestaurant size={'30px'} />
-                </Box>{' '}
-                SushiToken
-              </Heading>
-*/
