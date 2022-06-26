@@ -36,7 +36,7 @@ export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
-    <Box>
+    <Box as='nav'>
       <Flex
         bg={'blackAlpha.700'}
         color={'white'}

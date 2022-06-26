@@ -28,9 +28,11 @@ export const MainLayout: FC<Props> = ({ children, title, pageDescription, imageF
         backgroundPosition='center'
         backgroundSize={'cover'}
       >
-        <Navbar />
-        <Box width={'90%'} margin='0 auto' padding='30px 0' as='header'>
-          <main>{children}</main>
+        <Box as='header'>
+          <Navbar />
+        </Box>
+        <Box width={'90%'} margin='0 auto' padding='30px 0' as='main'>
+          {children}
         </Box>
       </Box>
 
