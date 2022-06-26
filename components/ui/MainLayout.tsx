@@ -1,9 +1,7 @@
-import { Box, Flex, Heading } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import Head from 'next/head'
 import { FC, ReactNode } from 'react'
-import { Navbar } from './Navbar'
-import { BiRestaurant } from 'react-icons/bi'
-import WithSubnavigation from './NavbarPrueba'
+import Navbar from './navbar/Navbar'
 interface Props {
   title: string
   pageDescription: string
@@ -30,7 +28,7 @@ export const MainLayout: FC<Props> = ({ children, title, pageDescription, imageF
         backgroundPosition='center'
         backgroundSize={'cover'}
       >
-        <WithSubnavigation />
+        <Navbar />
         <Box width={'90%'} margin='0 auto' padding='30px 0' as='header'>
           <main>{children}</main>
         </Box>
