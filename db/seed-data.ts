@@ -13,7 +13,10 @@ type PriceByPortion = {
   portion: number
   price: number
 }
-
+type SuitableTypes = {
+  for: 'VEGAN' | 'VEGETARIAN' | 'COELIAC'
+  isSuitable: boolean
+}
 // TODO pensar bien si esto vale la pena
 type ingredients = 'queso' | 'salmon' | 'langostinos' | 'pollo'
 
@@ -26,6 +29,7 @@ interface IProduct {
   enabled: boolean
   inStock: number
   slug: string
+  suitable?: SuitableTypes[]
 }
 
 export const MENU: Menus = {
@@ -95,7 +99,13 @@ export const MENU: Menus = {
           ingredients: ['salmon', 'queso philadelphia', 'palta', 'tamago'],
           enabled: true,
           inStock: 6,
-          slug: 'fell-roll'
+          slug: 'fell-roll',
+          suitable: [
+            {
+              for: 'COELIAC',
+              isSuitable: true
+            }
+          ]
         },
         {
           name: 'Honey Roll',
@@ -115,6 +125,99 @@ export const MENU: Menus = {
           enabled: true,
           inStock: 6,
           slug: 'honey-roll'
+        },
+        {
+          name: 'Buenos Aires Roll',
+          image: ['/assets/buenos_aires_roll.png'],
+          description:
+            'Relleno de salmón langostinos, queso philadelphia y palta, envuelto en salmón, con salsa buenos aires. ',
+          price: [
+            {
+              portion: 9,
+              price: 950
+            },
+            {
+              portion: 5,
+              price: 550
+            }
+          ],
+          ingredients: [
+            'salmon',
+            'langostinos',
+            'salsa buenos aires',
+            'queso philadelpia',
+            'arroz',
+            'palta'
+          ],
+          enabled: true,
+          inStock: 6,
+          slug: 'buenos-aires-roll'
+        },
+        {
+          name: 'Soul Roll',
+          image: ['/assets/soul_roll.png'],
+          description:
+            'Relleno de salmón, palmitos, tamago, envuelto en queso philadelhpia, coronado de almendras acaramelizadas. ',
+          price: [
+            {
+              portion: 8,
+              price: 920
+            },
+            {
+              portion: 4,
+              price: 520
+            }
+          ],
+          ingredients: [
+            'salmon',
+            'palmitos',
+            'tamago',
+            'queso philadelpia',
+            'almendras acaramelizadas'
+          ],
+          enabled: true,
+          inStock: 6,
+          slug: 'soul-roll'
+        },
+        {
+          name: 'Spf Roll',
+          image: ['/assets/spf_roll.png'],
+          description:
+            'Relleno de salmón, queso philadelphia y palta, envuelto en arroz y semillas de sésamo.',
+          price: [
+            {
+              portion: 9,
+              price: 950
+            },
+            {
+              portion: 5,
+              price: 550
+            }
+          ],
+          ingredients: ['salmon', 'semillas de sésamo', 'queso philadelpia', 'arroz', 'palta'],
+          enabled: true,
+          inStock: 6,
+          slug: 'spf-roll'
+        },
+        {
+          name: 'Placer Real Roll',
+          image: ['/assets/buenos_aires_roll.png'],
+          description:
+            'Relleno de salmón, queso philadelphia y palta, envuelto en tamago y salmón, coronado de batata, con salsa de maracuyá ',
+          price: [
+            {
+              portion: 9,
+              price: 950
+            },
+            {
+              portion: 5,
+              price: 550
+            }
+          ],
+          ingredients: ['salmon', 'tamago', 'queso philadelpia', 'palta', 'batata'],
+          enabled: true,
+          inStock: 6,
+          slug: 'placer-real-roll'
         }
       ]
     },
