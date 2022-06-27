@@ -31,7 +31,7 @@ export const MainLayout: FC<Props> = ({ children, title, pageDescription, imageF
         <Box as='header'>
           <Navbar />
         </Box>
-        <Box width={'90%'} margin='0 auto' padding='30px 0' as='main'>
+        <Box width={{ base: '90%', md: '80%' }} margin='0 auto' padding='30px 0' as='main'>
           {children}
         </Box>
       </Box>

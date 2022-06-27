@@ -41,41 +41,47 @@ export default function Navbar() {
         bg={'blackAlpha.700'}
         color={'white'}
         minH={'60px'}
-        py={{ base: 3 }}
-        px={{ base: 4 }}
+        py={{ base: 3, md: 4, lg: 5 }}
         align={'center'}
       >
-        <Flex>
-          <Heading
-            as='h1'
-            size='lg'
-            color={'white'}
-            fontWeight='600'
-            display={'flex'}
-            alignItems='center'
-          >
-            <Box
-              as='span'
-              padding={2}
-              backgroundColor='hsl(18deg 86% 48%)'
-              borderRadius={'full'}
-              marginRight={2}
+        <Flex
+          width={{ base: '90%', lg: '80%', '2xl': '70%' }}
+          margin={'0 auto'}
+          justifyContent={'space-between'}
+          alignItems='center'
+        >
+          <Flex>
+            <Heading
+              as='h1'
+              size='lg'
+              color={'white'}
+              fontWeight='600'
+              display={'flex'}
+              alignItems='center'
             >
-              <BiRestaurant size={'20px'} />
-            </Box>{' '}
-            SushiToken
-          </Heading>
-        </Flex>
-        <Flex flex={{ base: 1 }} justify={'end'}>
-          <IconButton
-            onClick={onToggle}
-            icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
-            variant={'ghost'}
-            aria-label={'Toggle Navigation'}
-            display={{ base: 'block', md: 'none' }}
-          />
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-            <DesktopNav menu={MENU} />
+              <Box
+                as='span'
+                padding={2}
+                backgroundColor='hsl(18deg 86% 48%)'
+                borderRadius={'full'}
+                marginRight={2}
+              >
+                <BiRestaurant size={'20px'} />
+              </Box>{' '}
+              SushiToken
+            </Heading>
+          </Flex>
+          <Flex flex={{ base: 1 }} justify={'end'}>
+            <IconButton
+              onClick={onToggle}
+              icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
+              variant={'ghost'}
+              aria-label={'Toggle Navigation'}
+              display={{ base: 'block', lg: 'none' }}
+            />
+            <Flex display={{ base: 'none', lg: 'flex' }} ml={10}>
+              <DesktopNav menu={MENU} />
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
