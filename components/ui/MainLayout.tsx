@@ -1,7 +1,8 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Fade, Text } from '@chakra-ui/react'
 import Head from 'next/head'
-import { FC, ReactNode } from 'react'
+import { FC, memo, ReactNode, useEffect, useState } from 'react'
 import Navbar from './navbar/Navbar'
+
 interface Props {
   title: string
   pageDescription: string
@@ -9,7 +10,7 @@ interface Props {
   children: ReactNode
 }
 
-export const MainLayout: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
+const MainLayout: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
   return (
     <>
       <Head>
@@ -22,21 +23,16 @@ export const MainLayout: FC<Props> = ({ children, title, pageDescription, imageF
 
         {imageFullUrl && <meta name='og:image' content={imageFullUrl} />}
       </Head>
-      <Box
-        minH='100vh'
-        backgroundImage={'url(/assets/banner.jpg)'}
-        backgroundPosition='center'
-        backgroundSize={'cover'}
-      >
-        <Box as='header'>
-          <Navbar />
-        </Box>
-        <Box width={{ base: '90%', md: '80%' }} margin='0 auto' padding='30px 0' as='main'>
-          {children}
-        </Box>
+
+      <Box as='header' position={'fixed'} top='0' width={'100%'}>
+        <Navbar />
       </Box>
+
+      <Box as='main'>{children}</Box>
 
       <footer>{/* TODO: mi custom footer */}</footer>
     </>
   )
 }
+
+export default memo(MainLayout)
