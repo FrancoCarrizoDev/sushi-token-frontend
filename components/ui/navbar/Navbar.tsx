@@ -38,7 +38,7 @@ export default function Navbar() {
   return (
     <Box as='nav'>
       <Flex
-        bg={'blackAlpha.700'}
+        bg={isOpen ? 'black' : 'blackAlpha.700'}
         color={'white'}
         minH={'60px'}
         py={{ base: 3, md: 4, lg: 5 }}
@@ -87,7 +87,7 @@ export default function Navbar() {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav menu={MENU} />
+        <MobileNav menu={MENU} isMenuOpen={isOpen} />
       </Collapse>
     </Box>
   )

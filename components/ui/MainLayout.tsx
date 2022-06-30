@@ -24,7 +24,7 @@ const MainLayout: FC<Props> = ({ children, title, pageDescription, imageFullUrl 
         {imageFullUrl && <meta name='og:image' content={imageFullUrl} />}
       </Head>
 
-      <Box as='header' position={'fixed'} top='0' width={'100%'}>
+      <Box as='header' position={'fixed'} top='0' width={'100%'} zIndex='1'>
         <Navbar />
       </Box>
 
