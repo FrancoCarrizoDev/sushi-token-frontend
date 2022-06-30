@@ -144,8 +144,18 @@ const Home: NextPage = () => {
                 </Button>
               </Stack>
             </Box>
-            <Box display={{ base: 'block', md: 'none' }} className='legend '>
-              <Text fontSize={'xl'}>{banner.description}</Text>
+            <Box display={{ base: 'block', md: 'none' }} className='legend' position='relative'>
+              <Divider
+                orientation='horizontal'
+                height={'3px'}
+                backgroundColor='hsl(18deg 86% 48%)'
+                borderBottom={'0'}
+                position={'absolute'}
+                maxW={'94%'}
+              />
+              <Text fontSize={'xl'} paddingTop={2}>
+                {banner.description}
+              </Text>
               <Text fontSize={'md'}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
             </Box>
             <Box
