@@ -53,36 +53,8 @@ const Home: NextPage = () => {
 
   // const dispatch = useDispatch()
 
-  // const [count, setCount] = useState(0)
-
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     setCount((prevCount) => (bannerInfo.length === prevCount + 1 ? 0 : prevCount + 1))
-  //   }, 5000)
-
-  //   return () => clearInterval(intervalId)
-  // }, [count])
-
   return (
     <MainLayout title='Main Page' pageDescription='Suhi Page'>
-      {/* <Box
-        minH='100vh'
-        backgroundImage={bannerInfo[count].image}
-        backgroundPosition='center'
-        backgroundSize={'cover'}
-        paddingTop='60px'
-      >
-        <Box
-          width={{ base: '90%', lg: '80%', '2xl': '70%' }}
-          margin='0 auto'
-          padding='30px 0'
-          as='main'
-        >
-          <Text as='h1' fontSize={'3xl'} color='white'>
-            Hola
-          </Text>
-        </Box>
-      </Box> */}
       <Carousel
         showStatus={false}
         autoPlay
@@ -177,7 +149,7 @@ const Home: NextPage = () => {
                     <Text fontSize={'xl'} paddingTop={2}>
                       {bannerDescription.description}
                     </Text>
-                    <Text fontSize={'md'}>
+                    <Text fontSize={'md'} padding={'0 10px'}>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </Text>
                   </Box>
