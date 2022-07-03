@@ -3,6 +3,7 @@ export interface Store {
   socialNetworks?: SocialNetwork[]
   description?: string
   address: string
+  slug: string
   numbers: string[]
   image: string[]
   menus: Menu[]
@@ -50,6 +51,7 @@ export const STORES: Store[] = [
     address: 'AV RAFAEL NUÑEZ 2203',
     numbers: ['351335135'],
     image: ['/assets/local1.jpg'],
+    slug: 'cerro-de-las-rosas',
     menus: [
       {
         name: 'STARTERS',
@@ -261,6 +263,7 @@ export const STORES: Store[] = [
     address: 'AV PABLO RICHIERI 3103',
     numbers: ['351335135'],
     image: ['/assets/local2.jpg'],
+    slug: 'barrio-jardin',
     menus: [
       {
         name: 'STARTERS',
@@ -472,6 +475,7 @@ export const STORES: Store[] = [
     address: 'AV. BELGRANO 203',
     numbers: ['351335135'],
     image: ['/assets/local3.jpg'],
+    slug: 'nueva-cordoba',
     menus: [
       {
         name: 'STARTERS',

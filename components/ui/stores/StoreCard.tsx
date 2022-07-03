@@ -10,6 +10,7 @@ import {
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { Store } from '../../../db/seed-data'
 
@@ -18,6 +19,12 @@ interface Props {
 }
 
 export const StoreCard: FC<Props> = ({ store }) => {
+  const router = useRouter()
+
+  const goToLocal = () => {
+    router.push(`/locations/${store.slug}`)
+  }
+
   return (
     <Center py={6}>
       <Stack
@@ -99,6 +106,7 @@ export const StoreCard: FC<Props> = ({ store }) => {
               _focus={{
                 bg: 'blue.500'
               }}
+              onClick={goToLocal}
             >
               Show Menu
             </Button>
