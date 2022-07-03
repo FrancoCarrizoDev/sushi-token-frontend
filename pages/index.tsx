@@ -1,10 +1,10 @@
 import { Flex, Box, Text, Button, Stack, Divider } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import MainLayout from '../components/ui/MainLayout'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { Footer } from '../components/ui'
 interface IMainBanner {
   image: string
   pretitle: string
@@ -159,7 +159,7 @@ const Home: NextPage = () => {
           </Box>
         ))}
       </Carousel>
-      <h1>Hola</h1>
+      <Footer />
     </MainLayout>
   )
 }

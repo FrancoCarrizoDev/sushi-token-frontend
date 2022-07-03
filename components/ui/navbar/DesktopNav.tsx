@@ -1,6 +1,5 @@
 import { Box, Stack, Popover, PopoverTrigger } from '@chakra-ui/react'
 import { FC } from 'react'
-import { MENU } from '../../../db/seed-data'
 import { IMenuItem } from '../../../interfaces'
 import ChakraNextLink from '../ChakraNextLink'
 
