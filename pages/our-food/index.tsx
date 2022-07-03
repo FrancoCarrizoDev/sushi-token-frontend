@@ -27,7 +27,7 @@ const OurFoodPage: NextPage = () => {
       pageDescription='Disfruta de las cartas de todos nuestros locales'
     >
       <Box
-        paddingTop={{ base: '80px', md: '150px', '3xl': '400px' }}
+        paddingTop={{ base: '80px', md: '100px' }}
         width={{ base: '90%', lg: '80%', '2xl': '70%' }}
         margin={'0 auto'}
       >

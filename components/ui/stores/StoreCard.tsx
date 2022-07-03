@@ -25,6 +25,10 @@ export const StoreCard: FC<Props> = ({ store }) => {
     router.push(`/locations/${store.slug}`)
   }
 
+  const goToMenuLocal = () => {
+    router.push(`/locations/${store.slug}/menu`)
+  }
+
   return (
     <Center py={6}>
       <Stack
@@ -88,8 +92,9 @@ export const StoreCard: FC<Props> = ({ store }) => {
               _focus={{
                 bg: 'gray.200'
               }}
+              onClick={goToLocal}
             >
-              Call
+              See More
             </Button>
             <Button
               flex={1}
@@ -106,7 +111,7 @@ export const StoreCard: FC<Props> = ({ store }) => {
               _focus={{
                 bg: 'blue.500'
               }}
-              onClick={goToLocal}
+              onClick={goToMenuLocal}
             >
               Show Menu
             </Button>

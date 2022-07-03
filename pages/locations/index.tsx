@@ -1,7 +1,7 @@
-import { NextPage } from 'next'
+import React from 'react'
 
-const LocationPage: NextPage = () => {
-  return <div>index</div>
+const LocationIndex = () => {
+  return <div>LocationIndex</div>
 }
 
-export default LocationPage
+export default LocationIndex

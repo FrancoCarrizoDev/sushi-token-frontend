@@ -159,7 +159,6 @@ const Home: NextPage = () => {
           </Box>
         ))}
       </Carousel>
-      <Footer />
     </MainLayout>
   )
 }

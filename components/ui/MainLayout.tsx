@@ -1,6 +1,7 @@
 import { Box, Fade, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import { FC, memo, ReactNode, useEffect, useState } from 'react'
+import Footer from './footer/Footer'
 import Navbar from './navbar/Navbar'
 
 interface Props {
@@ -30,7 +31,7 @@ const MainLayout: FC<Props> = ({ children, title, pageDescription, imageFullUrl 
 
       <Box as='main'>{children}</Box>
 
-      <footer>{/* TODO: mi custom footer */}</footer>
+      <Footer />
     </>
   )
 }
