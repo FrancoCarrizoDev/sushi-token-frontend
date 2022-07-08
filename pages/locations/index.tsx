@@ -1,7 +1,7 @@
 import React from 'react'
 
-const LocationIndex = () => {
-  return <div>LocationIndex</div>
+const LocationsIndex = () => {
+  return <div>LocationsIndex</div>
 }
 
-export default LocationIndex
+export default LocationsIndex

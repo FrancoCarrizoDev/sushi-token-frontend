@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Carousel } from 'react-responsive-carousel'
 import MainLayout from '../components/ui/MainLayout'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import { Footer } from '../components/ui'
+
 interface IMainBanner {
   image: string
   pretitle: string
