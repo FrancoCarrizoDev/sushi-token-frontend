@@ -46,7 +46,7 @@ const MenuIndex: NextPage<Props> = ({ local }) => {
               color='white'
               textAlign={{ base: 'center', md: 'start' }}
             >
-              Cerro De las rosas
+              {local}
             </Text>
             <Text
               fontSize={{ base: 'large' }}
@@ -137,8 +137,8 @@ const MenuIndex: NextPage<Props> = ({ local }) => {
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
   const localesSlugs = await [
     { params: { local: 'cerro-de-las-rosas' } },
-    { params: { local: 'nueva-cordoba' } },
-    { params: { local: 'barrio-jardin' } }
+    { params: { local: 'locations/nueva-cordoba' } },
+    { params: { local: 'locations/barrio-jardin' } }
   ]
 
   return {

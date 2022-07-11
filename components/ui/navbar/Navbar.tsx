@@ -6,6 +6,7 @@ import { DesktopNav } from './DesktopNav'
 import { MobileNav } from './MobileNav'
 import { FC } from 'react'
 import { useRouter } from 'next/router'
+import ChakraNextLink from '../ChakraNextLink'
 
 interface Props {
   menu: IMenuItem[]
@@ -54,7 +55,9 @@ const Navbar: FC<Props> = ({ menu }) => {
               >
                 <BiRestaurant size={'20px'} />
               </Box>{' '}
-              SushiToken
+              <ChakraNextLink href={'/'} _hover={{ textDecoration: 'none' }}>
+                SushiToken
+              </ChakraNextLink>
             </Heading>
           </Flex>
           <Flex flex={{ base: 1 }} justify={'end'}>
