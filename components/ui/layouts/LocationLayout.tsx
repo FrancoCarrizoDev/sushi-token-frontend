@@ -1,8 +1,9 @@
 import { Box, Fade, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import { FC, memo, ReactNode, useEffect, useState } from 'react'
-import Footer from './footer/Footer'
-import Navbar from './navbar/Navbar'
+import { IMenuItem } from '../../../interfaces'
+import Footer from '../footer/Footer'
+import Navbar from '../navbar/Navbar'
 
 interface Props {
   title: string
@@ -11,7 +12,26 @@ interface Props {
   children: ReactNode
 }
 
-const MainLayout: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
+const MENU: IMenuItem[] = [
+  {
+    label: 'Ir al inicio',
+    href: '/'
+  },
+  {
+    label: 'Hacer pedido',
+    href: '/menu'
+  },
+  {
+    label: 'Galería',
+    href: '/gallery'
+  },
+  {
+    label: 'Reservar',
+    href: '/reserve'
+  }
+]
+
+const LocationLayout: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
   return (
     <>
       <Head>
@@ -26,7 +46,7 @@ const MainLayout: FC<Props> = ({ children, title, pageDescription, imageFullUrl 
       </Head>
 
       <Box as='header' position={'fixed'} top='0' width={'100%'} zIndex='1'>
-        <Navbar />
+        <Navbar menu={MENU} />
       </Box>
 
       <Box as='main'>{children}</Box>
@@ -36,4 +56,4 @@ const MainLayout: FC<Props> = ({ children, title, pageDescription, imageFullUrl 
   )
 }
 
-export default memo(MainLayout)
+export default memo(LocationLayout)

@@ -35,7 +35,7 @@ const OurFoodPage: NextPage = () => {
           <Box w='100%'>
             <Flex align='center' gap='5px'>
               <Text as={'h1'} fontSize={'2xl'} fontWeight='600' color={'blackAlpha.800'}>
-                Nuestros locales
+                Seleccione un local
               </Text>
               <GrCatalog display='inline' size='20px' />
             </Flex>

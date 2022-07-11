@@ -4,36 +4,22 @@ import { BiRestaurant } from 'react-icons/bi'
 import { IMenuItem } from '../../../interfaces'
 import { DesktopNav } from './DesktopNav'
 import { MobileNav } from './MobileNav'
+import { FC } from 'react'
+import { useRouter } from 'next/router'
 
-const MENU: IMenuItem[] = [
-  {
-    label: 'Home',
-    href: '/'
-  },
-  {
-    label: 'Our Food',
-    href: '/our-food'
-  },
-  {
-    label: 'Order Now',
-    href: '/order-now'
-  },
-  {
-    label: 'Gallery',
-    href: '/gallery'
-  },
-  {
-    label: 'Location',
-    href: '/locations'
-  },
-  {
-    label: 'Reserve',
-    href: '/reserve'
-  }
-]
+interface Props {
+  menu: IMenuItem[]
+}
 
-export default function Navbar() {
+const Navbar: FC<Props> = ({ menu }) => {
   const { isOpen, onToggle } = useDisclosure()
+
+  const router = useRouter()
+
+  const MENU = menu.map((menuItem: IMenuItem) => ({
+    ...menuItem,
+    href: router.query.local ? router.query.local + menuItem.href : menuItem.href
+  }))
 
   return (
     <Box as='nav'>
@@ -92,3 +78,5 @@ export default function Navbar() {
     </Box>
   )
 }
+
+export default Navbar

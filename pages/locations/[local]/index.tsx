@@ -5,6 +5,7 @@ import React from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import { MainLayout } from '../../../components/ui'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import LocationLayout from '../../../components/ui/layouts/LocationLayout'
 interface Props {
   local: string
 }
@@ -12,7 +13,7 @@ interface Props {
 const MenuIndex: NextPage<Props> = ({ local }) => {
   console.log(local)
   return (
-    <MainLayout
+    <LocationLayout
       title={`Bienvenido a ${local}`}
       pageDescription={`Todo acerca de nuestro tocal ${local}`}
     >
@@ -23,7 +24,7 @@ const MenuIndex: NextPage<Props> = ({ local }) => {
         transitionTime={1000}
         interval={10000}
       >
-        <Box minH={'40vh'}>
+        <Box minH={'50vh'}>
           <Image src={'/assets/banner2.jpg'} alt='image1' layout='fill' objectFit='cover' />
 
           <Box
@@ -38,14 +39,14 @@ const MenuIndex: NextPage<Props> = ({ local }) => {
               color='white'
               textAlign={{ base: 'center', md: 'start' }}
             >
-              Cerro de las rosas
+              Bienvenido al local
             </Text>
             <Text
               fontSize={{ base: '5xl' }}
               color='white'
               textAlign={{ base: 'center', md: 'start' }}
             >
-              title
+              Cerro De las rosas
             </Text>
             <Text
               fontSize={{ base: 'large' }}
@@ -54,13 +55,13 @@ const MenuIndex: NextPage<Props> = ({ local }) => {
               textAlign={{ base: 'center', md: 'start' }}
               maxW={{ base: 'auto', md: '50%' }}
             >
-              summary
+              Confort, tranquilidad, belleza y elegancia...
             </Text>
             <Stack
               spacing={4}
               direction='row'
               justify={{ base: 'center', md: 'start' }}
-              marginTop={{ base: '3' }}
+              marginTop={{ base: '5' }}
             >
               <Button color='black' backgroundColor='white' size='md' borderRadius={'2xl'}>
                 LEAN MORE
@@ -129,7 +130,7 @@ const MenuIndex: NextPage<Props> = ({ local }) => {
           </Box>
         </Box>
       </Carousel>
-    </MainLayout>
+    </LocationLayout>
   )
 }
 

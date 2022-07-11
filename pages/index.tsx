@@ -1,9 +1,7 @@
-import { Flex, Box, Text, Button, Stack, Divider } from '@chakra-ui/react'
 import type { NextPage } from 'next'
-import Image from 'next/image'
-import { Carousel } from 'react-responsive-carousel'
-import MainLayout from '../components/ui/MainLayout'
+import MainLayout from '../components/ui/layouts/MainLayout'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { CustomCarousel } from '../components/ui/carousel/CustomCarousel'
 
 interface IMainBanner {
   image: string
@@ -55,110 +53,7 @@ const Home: NextPage = () => {
 
   return (
     <MainLayout title='Main Page' pageDescription='Suhi Page'>
-      <Carousel
-        showStatus={false}
-        autoPlay
-        swipeable={false}
-        infiniteLoop
-        transitionTime={1000}
-        interval={10000}
-      >
-        {bannerInfo.map((banner) => (
-          <Box minH={'100vh'} key={banner.image}>
-            <Image src={banner.image} alt='image1' layout='fill' objectFit='cover' />
-
-            <Box
-              position={'relative'}
-              paddingTop={{ base: '180px', md: '150px', '3xl': '400px' }}
-              width={{ base: '90%', lg: '80%', '2xl': '70%' }}
-              margin='0 auto'
-              fontWeight={'600'}
-            >
-              <Text
-                fontSize={{ base: '4xl' }}
-                color='white'
-                textAlign={{ base: 'center', md: 'start' }}
-              >
-                {banner.pretitle}
-              </Text>
-              <Text
-                fontSize={{ base: '5xl' }}
-                color='white'
-                textAlign={{ base: 'center', md: 'start' }}
-              >
-                {banner.title}
-              </Text>
-              <Text
-                fontSize={{ base: 'large' }}
-                fontWeight='normal'
-                color='white'
-                textAlign={{ base: 'center', md: 'start' }}
-                maxW={{ base: 'auto', md: '50%' }}
-              >
-                {banner.summary}
-              </Text>
-              <Stack
-                spacing={4}
-                direction='row'
-                justify={{ base: 'center', md: 'start' }}
-                marginTop={{ base: '3' }}
-              >
-                <Button color='black' backgroundColor='white' size='md' borderRadius={'2xl'}>
-                  LEAN MORE
-                </Button>
-                <Button
-                  backgroundColor='hsl(18deg 86% 48%)'
-                  color='white'
-                  size='md'
-                  borderRadius={'2xl'}
-                >
-                  ORDER NOW
-                </Button>
-              </Stack>
-            </Box>
-            <Box display={{ base: 'block', md: 'none' }} className='legend' position='relative'>
-              <Divider
-                orientation='horizontal'
-                height={'3px'}
-                backgroundColor='hsl(18deg 86% 48%)'
-                borderBottom={'0'}
-                position={'absolute'}
-                maxW={'94%'}
-              />
-              <Text fontSize={'xl'} paddingTop={2}>
-                {banner.description}
-              </Text>
-              <Text fontSize={'md'}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
-            </Box>
-            <Box
-              className='legend carousel-slider-lengend-fix '
-              display={{ base: 'none', md: 'block' }}
-            >
-              <Flex justifyContent={'space-between'}>
-                {bannerInfo.map((bannerDescription) => (
-                  <Box key={bannerDescription.description} position='relative'>
-                    <Divider
-                      orientation='horizontal'
-                      height={'3px'}
-                      backgroundColor='hsl(18deg 86% 48%)'
-                      borderBottom={'0'}
-                      display={banner.image === bannerDescription.image ? 'block' : 'none'}
-                      position={'absolute'}
-                      width='100%'
-                    />
-                    <Text fontSize={'xl'} paddingTop={2}>
-                      {bannerDescription.description}
-                    </Text>
-                    <Text fontSize={'md'} padding={'0 10px'}>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </Text>
-                  </Box>
-                ))}
-              </Flex>
-            </Box>
-          </Box>
-        ))}
-      </Carousel>
+      <CustomCarousel items={bannerInfo} vHeigth={'100vh'} />
     </MainLayout>
   )
 }
