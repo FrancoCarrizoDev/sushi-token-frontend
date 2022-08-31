@@ -41,6 +41,146 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type ComponentGeneralColumnaDeLinks = {
+  __typename?: 'ComponentGeneralColumnaDeLinks';
+  id: Scalars['ID'];
+  link?: Maybe<Array<Maybe<ComponentGeneralLink>>>;
+  titulo?: Maybe<Scalars['String']>;
+};
+
+
+export type ComponentGeneralColumnaDeLinksLinkArgs = {
+  filters?: InputMaybe<ComponentGeneralLinkFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentGeneralColumnaDeLinksFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentGeneralColumnaDeLinksFiltersInput>>>;
+  not?: InputMaybe<ComponentGeneralColumnaDeLinksFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentGeneralColumnaDeLinksFiltersInput>>>;
+  titulo?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentGeneralColumnaDeLinksInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  link?: InputMaybe<Array<InputMaybe<ComponentGeneralLinkInput>>>;
+  titulo?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentGeneralFooter = {
+  __typename?: 'ComponentGeneralFooter';
+  columnaLinks?: Maybe<Array<Maybe<ComponentGeneralColumnaDeLinks>>>;
+  descripcion?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  imagenLogo?: Maybe<UploadFileEntityResponse>;
+};
+
+
+export type ComponentGeneralFooterColumnaLinksArgs = {
+  filters?: InputMaybe<ComponentGeneralColumnaDeLinksFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentGeneralFooterInput = {
+  columnaLinks?: InputMaybe<Array<InputMaybe<ComponentGeneralColumnaDeLinksInput>>>;
+  descripcion?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  imagenLogo?: InputMaybe<Scalars['ID']>;
+};
+
+export type ComponentGeneralImagen = {
+  __typename?: 'ComponentGeneralImagen';
+  id: Scalars['ID'];
+};
+
+export type ComponentGeneralLink = {
+  __typename?: 'ComponentGeneralLink';
+  enlaceExterno?: Maybe<Scalars['Boolean']>;
+  id: Scalars['ID'];
+  nombre?: Maybe<Scalars['String']>;
+  pagina?: Maybe<PageEntityResponse>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type ComponentGeneralLinkFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentGeneralLinkFiltersInput>>>;
+  enlaceExterno?: InputMaybe<BooleanFilterInput>;
+  nombre?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentGeneralLinkFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentGeneralLinkFiltersInput>>>;
+  pagina?: InputMaybe<PageFiltersInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentGeneralLinkInput = {
+  enlaceExterno?: InputMaybe<Scalars['Boolean']>;
+  id?: InputMaybe<Scalars['ID']>;
+  nombre?: InputMaybe<Scalars['String']>;
+  pagina?: InputMaybe<Scalars['ID']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentGeneralTelefono = {
+  __typename?: 'ComponentGeneralTelefono';
+  id: Scalars['ID'];
+  numero?: Maybe<Scalars['String']>;
+  tipo?: Maybe<Scalars['String']>;
+};
+
+export type ComponentGeneralTelefonoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentGeneralTelefonoFiltersInput>>>;
+  not?: InputMaybe<ComponentGeneralTelefonoFiltersInput>;
+  numero?: InputMaybe<StringFilterInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentGeneralTelefonoFiltersInput>>>;
+  tipo?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentGeneralTelefonoInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  numero?: InputMaybe<Scalars['String']>;
+  tipo?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentInterfazBanner = {
+  __typename?: 'ComponentInterfazBanner';
+  descripcion: Scalars['String'];
+  descripcionImagen?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  imagen: UploadFileEntityResponse;
+  preTitulo: Scalars['String'];
+  primerBoton?: Maybe<Scalars['String']>;
+  segundoBoton?: Maybe<Scalars['String']>;
+  subDescripcion?: Maybe<Scalars['String']>;
+  titulo: Scalars['String'];
+};
+
+export type ComponentInterfazBannerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentInterfazBannerFiltersInput>>>;
+  descripcion?: InputMaybe<StringFilterInput>;
+  descripcionImagen?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentInterfazBannerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentInterfazBannerFiltersInput>>>;
+  preTitulo?: InputMaybe<StringFilterInput>;
+  primerBoton?: InputMaybe<StringFilterInput>;
+  segundoBoton?: InputMaybe<StringFilterInput>;
+  subDescripcion?: InputMaybe<StringFilterInput>;
+  titulo?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentInterfazBannerInput = {
+  descripcion?: InputMaybe<Scalars['String']>;
+  descripcionImagen?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  imagen?: InputMaybe<Scalars['ID']>;
+  preTitulo?: InputMaybe<Scalars['String']>;
+  primerBoton?: InputMaybe<Scalars['String']>;
+  segundoBoton?: InputMaybe<Scalars['String']>;
+  subDescripcion?: InputMaybe<Scalars['String']>;
+  titulo?: InputMaybe<Scalars['String']>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -93,7 +233,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Greeting | I18NLocale | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentGeneralColumnaDeLinks | ComponentGeneralFooter | ComponentGeneralImagen | ComponentGeneralLink | ComponentGeneralTelefono | ComponentInterfazBanner | Greeting | I18NLocale | Local | Main | Page | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Greeting = {
   __typename?: 'Greeting';
@@ -241,15 +381,120 @@ export type JsonFilterInput = {
   startsWith?: InputMaybe<Scalars['JSON']>;
 };
 
+export type Local = {
+  __typename?: 'Local';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  direccion?: Maybe<Scalars['String']>;
+  imagenes?: Maybe<UploadFileRelationResponseCollection>;
+  nombre?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  telefono?: Maybe<Array<Maybe<ComponentGeneralTelefono>>>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type LocalImagenesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type LocalTelefonoArgs = {
+  filters?: InputMaybe<ComponentGeneralTelefonoFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type LocalEntity = {
+  __typename?: 'LocalEntity';
+  attributes?: Maybe<Local>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type LocalEntityResponse = {
+  __typename?: 'LocalEntityResponse';
+  data?: Maybe<LocalEntity>;
+};
+
+export type LocalEntityResponseCollection = {
+  __typename?: 'LocalEntityResponseCollection';
+  data: Array<LocalEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type LocalFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<LocalFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  direccion?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  nombre?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<LocalFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<LocalFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type LocalInput = {
+  direccion?: InputMaybe<Scalars['String']>;
+  imagenes?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  nombre?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  telefono?: InputMaybe<Array<InputMaybe<ComponentGeneralTelefonoInput>>>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type Main = {
+  __typename?: 'Main';
+  banner?: Maybe<Array<Maybe<ComponentInterfazBanner>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  pieDePagina?: Maybe<ComponentGeneralFooter>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  titulo?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type MainBannerArgs = {
+  filters?: InputMaybe<ComponentInterfazBannerFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type MainEntity = {
+  __typename?: 'MainEntity';
+  attributes?: Maybe<Main>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type MainEntityResponse = {
+  __typename?: 'MainEntityResponse';
+  data?: Maybe<MainEntity>;
+};
+
+export type MainInput = {
+  banner?: InputMaybe<Array<InputMaybe<ComponentInterfazBannerInput>>>;
+  pieDePagina?: InputMaybe<ComponentGeneralFooterInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  titulo?: InputMaybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createGreeting?: Maybe<GreetingEntityResponse>;
+  createLocal?: Maybe<LocalEntityResponse>;
+  createPage?: Maybe<PageEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteGreeting?: Maybe<GreetingEntityResponse>;
+  deleteLocal?: Maybe<LocalEntityResponse>;
+  deleteMain?: Maybe<MainEntityResponse>;
+  deletePage?: Maybe<PageEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
@@ -268,6 +513,9 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateFileInfo: UploadFileEntityResponse;
   updateGreeting?: Maybe<GreetingEntityResponse>;
+  updateLocal?: Maybe<LocalEntityResponse>;
+  updateMain?: Maybe<MainEntityResponse>;
+  updatePage?: Maybe<PageEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
@@ -279,6 +527,16 @@ export type Mutation = {
 
 export type MutationCreateGreetingArgs = {
   data: GreetingInput;
+};
+
+
+export type MutationCreateLocalArgs = {
+  data: LocalInput;
+};
+
+
+export type MutationCreatePageArgs = {
+  data: PageInput;
 };
 
 
@@ -298,6 +556,16 @@ export type MutationCreateUsersPermissionsUserArgs = {
 
 
 export type MutationDeleteGreetingArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteLocalArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeletePageArgs = {
   id: Scalars['ID'];
 };
 
@@ -369,6 +637,23 @@ export type MutationUpdateGreetingArgs = {
 };
 
 
+export type MutationUpdateLocalArgs = {
+  data: LocalInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateMainArgs = {
+  data: MainInput;
+};
+
+
+export type MutationUpdatePageArgs = {
+  data: PageInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID'];
@@ -393,6 +678,50 @@ export type MutationUploadArgs = {
   info?: InputMaybe<FileInfoInput>;
   ref?: InputMaybe<Scalars['String']>;
   refId?: InputMaybe<Scalars['ID']>;
+};
+
+export type Page = {
+  __typename?: 'Page';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  cuerpo?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  titulo?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PageEntity = {
+  __typename?: 'PageEntity';
+  attributes?: Maybe<Page>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PageEntityResponse = {
+  __typename?: 'PageEntityResponse';
+  data?: Maybe<PageEntity>;
+};
+
+export type PageEntityResponseCollection = {
+  __typename?: 'PageEntityResponseCollection';
+  data: Array<PageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type PageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  cuerpo?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<PageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  titulo?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type PageInput = {
+  cuerpo?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  titulo?: InputMaybe<Scalars['String']>;
 };
 
 export type Pagination = {
@@ -421,7 +750,12 @@ export type Query = {
   greetings?: Maybe<GreetingEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
+  local?: Maybe<LocalEntityResponse>;
+  locales?: Maybe<LocalEntityResponseCollection>;
+  main?: Maybe<MainEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
+  page?: Maybe<PageEntityResponse>;
+  pages?: Maybe<PageEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
@@ -452,6 +786,37 @@ export type QueryI18NLocaleArgs = {
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryLocalArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryLocalesArgs = {
+  filters?: InputMaybe<LocalFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryMainArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type QueryPageArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -595,6 +960,11 @@ export type UploadFileInput = {
   size?: InputMaybe<Scalars['Float']>;
   url?: InputMaybe<Scalars['String']>;
   width?: InputMaybe<Scalars['Int']>;
+};
+
+export type UploadFileRelationResponseCollection = {
+  __typename?: 'UploadFileRelationResponseCollection';
+  data: Array<UploadFileEntity>;
 };
 
 export type UsersPermissionsCreateRolePayload = {

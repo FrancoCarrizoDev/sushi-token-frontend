@@ -7,6 +7,9 @@ import { MobileNav } from './MobileNav'
 import { FC } from 'react'
 import { useRouter } from 'next/router'
 import ChakraNextLink from '../ChakraNextLink'
+import { useQuery } from '@apollo/client'
+import { Query } from '../../../generated'
+import { TitleDocument } from '../../../graphql/main'
 
 interface Props {
   menu: IMenuItem[]
@@ -14,6 +17,7 @@ interface Props {
 
 const Navbar: FC<Props> = ({ menu }) => {
   const { isOpen, onToggle } = useDisclosure()
+  const { data, loading } = useQuery<Query>(TitleDocument)
 
   const router = useRouter()
 
@@ -21,6 +25,10 @@ const Navbar: FC<Props> = ({ menu }) => {
     ...menuItem,
     href: router.query.local ? router.query.local + menuItem.href : menuItem.href
   }))
+
+  if (loading) {
+    return <h1>Cargando...</h1>
+  }
 
   return (
     <Box as='nav'>
@@ -56,7 +64,7 @@ const Navbar: FC<Props> = ({ menu }) => {
                 <BiRestaurant size={'20px'} />
               </Box>{' '}
               <ChakraNextLink href={'/'} _hover={{ textDecoration: 'none' }}>
-                SushiToken
+                {data?.main?.data?.attributes?.titulo}
               </ChakraNextLink>
             </Heading>
           </Flex>

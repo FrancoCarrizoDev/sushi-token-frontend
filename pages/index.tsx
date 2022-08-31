@@ -2,6 +2,8 @@ import type { NextPage } from 'next'
 import MainLayout from '../components/ui/layouts/MainLayout'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { CustomCarousel } from '../components/ui/carousel/CustomCarousel'
+import { UserDocument } from '../generated'
+import { useQuery } from '@apollo/client'
 
 interface IMainBanner {
   image: string
@@ -43,7 +45,9 @@ const bannerInfo: IMainBanner[] = [
 ]
 
 const Home: NextPage = () => {
-  // const { data, error, loading } = useQuery(UserDocument)
+  // const data = useQuery(UserDocument)
+
+  // console.log(data)
 
   // const count = useSelector((state: RootState) => state.counter.value)
 

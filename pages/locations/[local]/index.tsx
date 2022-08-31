@@ -6,130 +6,39 @@ import { Carousel } from 'react-responsive-carousel'
 import { MainLayout } from '../../../components/ui'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import LocationLayout from '../../../components/ui/layouts/LocationLayout'
+import { CustomCarousel } from '../../../components/ui/carousel/CustomCarousel'
 interface Props {
   local: string
+  items: IMainBanner[]
+  vHeigth: string
 }
 
-const MenuIndex: NextPage<Props> = ({ local }) => {
+interface IMainBanner {
+  image: string
+  pretitle: string
+  title: string
+  summary: string
+  buttonLabel: string
+}
+
+const items: IMainBanner[] = [
+  {
+    pretitle: 'Bienvenido al local',
+    title: 'Cerro de las rosas',
+    buttonLabel: 'Order Now',
+    image: '/assets/banner2.jpg',
+    summary: 'Confort, tranquilidad, belleza y elegancia...'
+  }
+]
+
+const MenuIndex: NextPage<Props> = ({ local, vHeigth }) => {
   console.log(local)
   return (
     <LocationLayout
       title={`Bienvenido a ${local}`}
       pageDescription={`Todo acerca de nuestro tocal ${local}`}
     >
-      <Carousel
-        showStatus={false}
-        swipeable={false}
-        infiniteLoop
-        transitionTime={1000}
-        interval={10000}
-      >
-        <Box minH={'50vh'}>
-          <Image src={'/assets/banner2.jpg'} alt='image1' layout='fill' objectFit='cover' />
-
-          <Box
-            position={'relative'}
-            paddingTop={{ base: '100px' }}
-            width={{ base: '90%', lg: '80%', '2xl': '70%' }}
-            margin='0 auto'
-            fontWeight={'600'}
-          >
-            <Text
-              fontSize={{ base: '4xl' }}
-              color='white'
-              textAlign={{ base: 'center', md: 'start' }}
-            >
-              Bienvenido al local
-            </Text>
-            <Text
-              fontSize={{ base: '5xl' }}
-              color='white'
-              textAlign={{ base: 'center', md: 'start' }}
-            >
-              {local}
-            </Text>
-            <Text
-              fontSize={{ base: 'large' }}
-              fontWeight='normal'
-              color='white'
-              textAlign={{ base: 'center', md: 'start' }}
-              maxW={{ base: 'auto', md: '50%' }}
-            >
-              Confort, tranquilidad, belleza y elegancia...
-            </Text>
-            <Stack
-              spacing={4}
-              direction='row'
-              justify={{ base: 'center', md: 'start' }}
-              marginTop={{ base: '5' }}
-            >
-              <Button color='black' backgroundColor='white' size='md' borderRadius={'2xl'}>
-                LEAN MORE
-              </Button>
-              <Button
-                backgroundColor='hsl(18deg 86% 48%)'
-                color='white'
-                size='md'
-                borderRadius={'2xl'}
-              >
-                ORDER NOW
-              </Button>
-            </Stack>
-          </Box>
-        </Box>
-        <Box minH={'40vh'}>
-          <Image src={'/assets/banner2.jpg'} alt='image1' layout='fill' objectFit='cover' />
-
-          <Box
-            position={'relative'}
-            width={{ base: '90%', lg: '80%', '2xl': '70%' }}
-            margin='0 auto'
-            fontWeight={'600'}
-          >
-            <Text
-              fontSize={{ base: '4xl' }}
-              color='white'
-              textAlign={{ base: 'center', md: 'start' }}
-            >
-              pretitle
-            </Text>
-            <Text
-              fontSize={{ base: '5xl' }}
-              color='white'
-              textAlign={{ base: 'center', md: 'start' }}
-            >
-              title
-            </Text>
-            <Text
-              fontSize={{ base: 'large' }}
-              fontWeight='normal'
-              color='white'
-              textAlign={{ base: 'center', md: 'start' }}
-              maxW={{ base: 'auto', md: '50%' }}
-            >
-              summary
-            </Text>
-            <Stack
-              spacing={4}
-              direction='row'
-              justify={{ base: 'center', md: 'start' }}
-              marginTop={{ base: '3' }}
-            >
-              <Button color='black' backgroundColor='white' size='md' borderRadius={'2xl'}>
-                LEAN MORE
-              </Button>
-              <Button
-                backgroundColor='hsl(18deg 86% 48%)'
-                color='white'
-                size='md'
-                borderRadius={'2xl'}
-              >
-                ORDER NOW
-              </Button>
-            </Stack>
-          </Box>
-        </Box>
-      </Carousel>
+      <CustomCarousel items={items} vHeigth={'50vh'} showDescription={false} />
     </LocationLayout>
   )
 }
