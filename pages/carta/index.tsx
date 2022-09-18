@@ -1,4 +1,13 @@
-import { Box, Divider, Fade, Flex, FormControl, Input, Spinner, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Divider,
+  Fade,
+  Flex,
+  FormControl,
+  Input,
+  Spinner,
+  Text
+} from '@chakra-ui/react'
 import { NextPage } from 'next'
 import { MainLayout, StoreCard } from '../../components/ui'
 import { Store, STORES } from '../../db/seed-data'
@@ -6,20 +15,32 @@ import { Store, STORES } from '../../db/seed-data'
 import { GrCatalog } from 'react-icons/gr'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { allLocals } from '../../graphql/local'
+import { useQuery } from '@apollo/client'
+import { Query } from '../../generated'
 
 const OurFoodPage: NextPage = () => {
   const [filter, setFilter] = useState<string>('')
   const [storedFilter, setStoredFilter] = useState<Store[]>([])
+  const { data, loading } = useQuery<Query>(allLocals)
+
+  console.log(data)
 
   useEffect(() => {
     if (filter === '') {
       setStoredFilter(STORES)
     }
     {
-      const storeFiltered = STORES.filter((store) => store.name.includes(filter.toUpperCase()))
+      const storeFiltered = STORES.filter((store) =>
+        store.name.includes(filter.toUpperCase())
+      )
       setStoredFilter(storeFiltered)
     }
   }, [filter])
+
+  if (loading) {
+    return <h1>Cargando...</h1>
+  }
 
   return (
     <MainLayout

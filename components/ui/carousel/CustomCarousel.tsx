@@ -31,6 +31,8 @@ export const CustomCarousel: FC<Props> = ({
 }) => {
   const { data, loading } = useQuery<Query>(MainDocument)
 
+  console.log(data)
+
   if (loading) {
     return <h1>Cargando...</h1>
   }

@@ -181,6 +181,48 @@ export type ComponentInterfazBannerInput = {
   titulo?: InputMaybe<Scalars['String']>;
 };
 
+export type ComponentInterfazRedesSociales = {
+  __typename?: 'ComponentInterfazRedesSociales';
+  id: Scalars['ID'];
+  iframe?: Maybe<Scalars['String']>;
+  nombre?: Maybe<Enum_Componentinterfazredessociales_Nombre>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type ComponentInterfazRedesSocialesFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentInterfazRedesSocialesFiltersInput>>>;
+  iframe?: InputMaybe<StringFilterInput>;
+  nombre?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentInterfazRedesSocialesFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentInterfazRedesSocialesFiltersInput>>>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentInterfazRedesSocialesInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  iframe?: InputMaybe<Scalars['String']>;
+  nombre?: InputMaybe<Enum_Componentinterfazredessociales_Nombre>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentInterfazTags = {
+  __typename?: 'ComponentInterfazTags';
+  id: Scalars['ID'];
+  tag?: Maybe<Scalars['String']>;
+};
+
+export type ComponentInterfazTagsFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentInterfazTagsFiltersInput>>>;
+  not?: InputMaybe<ComponentInterfazTagsFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentInterfazTagsFiltersInput>>>;
+  tag?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentInterfazTagsInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  tag?: InputMaybe<Scalars['String']>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -203,6 +245,12 @@ export type DateTimeFilterInput = {
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
+
+export enum Enum_Componentinterfazredessociales_Nombre {
+  Facebook = 'facebook',
+  Instagram = 'instagram',
+  Twitter = 'twitter'
+}
 
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
@@ -233,7 +281,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentGeneralColumnaDeLinks | ComponentGeneralFooter | ComponentGeneralImagen | ComponentGeneralLink | ComponentGeneralTelefono | ComponentInterfazBanner | Greeting | I18NLocale | Local | Main | Page | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentGeneralColumnaDeLinks | ComponentGeneralFooter | ComponentGeneralImagen | ComponentGeneralLink | ComponentGeneralTelefono | ComponentInterfazBanner | ComponentInterfazRedesSociales | ComponentInterfazTags | Greeting | I18NLocale | Local | Main | Page | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Greeting = {
   __typename?: 'Greeting';
@@ -384,10 +432,13 @@ export type JsonFilterInput = {
 export type Local = {
   __typename?: 'Local';
   createdAt?: Maybe<Scalars['DateTime']>;
+  descripcion?: Maybe<Scalars['String']>;
   direccion?: Maybe<Scalars['String']>;
   imagenes?: Maybe<UploadFileRelationResponseCollection>;
   nombre?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  redesSociales?: Maybe<Array<Maybe<ComponentInterfazRedesSociales>>>;
+  tags?: Maybe<Array<Maybe<ComponentInterfazTags>>>;
   telefono?: Maybe<Array<Maybe<ComponentGeneralTelefono>>>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   url?: Maybe<Scalars['String']>;
@@ -396,6 +447,20 @@ export type Local = {
 
 export type LocalImagenesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type LocalRedesSocialesArgs = {
+  filters?: InputMaybe<ComponentInterfazRedesSocialesFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type LocalTagsArgs = {
+  filters?: InputMaybe<ComponentInterfazTagsFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -427,6 +492,7 @@ export type LocalEntityResponseCollection = {
 export type LocalFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<LocalFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  descripcion?: InputMaybe<StringFilterInput>;
   direccion?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   nombre?: InputMaybe<StringFilterInput>;
@@ -438,10 +504,13 @@ export type LocalFiltersInput = {
 };
 
 export type LocalInput = {
+  descripcion?: InputMaybe<Scalars['String']>;
   direccion?: InputMaybe<Scalars['String']>;
   imagenes?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   nombre?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  redesSociales?: InputMaybe<Array<InputMaybe<ComponentInterfazRedesSocialesInput>>>;
+  tags?: InputMaybe<Array<InputMaybe<ComponentInterfazTagsInput>>>;
   telefono?: InputMaybe<Array<InputMaybe<ComponentGeneralTelefonoInput>>>;
   url?: InputMaybe<Scalars['String']>;
 };

@@ -19,7 +19,7 @@ const MENU: IMenuItem[] = [
   },
   {
     label: 'Carta',
-    href: '/our-food'
+    href: '/carta'
   },
   {
     label: 'Galería',
