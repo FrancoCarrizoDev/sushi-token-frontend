@@ -1,12 +1,13 @@
-import { Box, Button, Stack, Text } from '@chakra-ui/react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
 import React from 'react'
-import { Carousel } from 'react-responsive-carousel'
-import { MainLayout } from '../../../components/ui'
+
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import LocationLayout from '../../../components/ui/layouts/LocationLayout'
 import { CustomCarousel } from '../../../components/ui/carousel/CustomCarousel'
+import { gql } from '@apollo/client'
+import client from '../../../graphql/apolloNext'
+import { Query } from '../../../generated'
+
 interface Props {
   local: string
   items: IMainBanner[]
@@ -32,23 +33,43 @@ const items: IMainBanner[] = [
 ]
 
 const MenuIndex: NextPage<Props> = ({ local, vHeigth }) => {
-  console.log(local)
   return (
     <LocationLayout
       title={`Bienvenido a ${local}`}
       pageDescription={`Todo acerca de nuestro tocal ${local}`}
     >
-      <CustomCarousel items={items} vHeigth={'50vh'} showDescription={false} />
+      <CustomCarousel vHeigth={'50vh'} showDescription={false} />
     </LocationLayout>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const localesSlugs = await [
-    { params: { local: 'cerro-de-las-rosas' } },
-    { params: { local: 'locations/nueva-cordoba' } },
-    { params: { local: 'locations/barrio-jardin' } }
-  ]
+  const { data } = await client.query<Query>({
+    query: gql`
+      query Locals {
+        locales {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    `
+  })
+
+  if (!data.locales?.data || data.locales?.data.length === 0) {
+    return {
+      paths: [],
+      fallback: false
+    }
+  }
+
+  const localesSlugs = data.locales?.data.map((local) => ({
+    params: {
+      local: local.attributes?.url || ''
+    }
+  }))
 
   return {
     paths: localesSlugs,

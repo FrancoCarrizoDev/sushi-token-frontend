@@ -19,19 +19,15 @@ interface IMainBanner {
 }
 
 interface Props {
-  items: IMainBanner[]
   vHeigth: string
   showDescription?: boolean
 }
 
 export const CustomCarousel: FC<Props> = ({
-  items,
   vHeigth = '100vh',
   showDescription = true
 }) => {
   const { data, loading } = useQuery<Query>(MainDocument)
-
-  console.log(data)
 
   if (loading) {
     return <h1>Cargando...</h1>

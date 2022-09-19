@@ -11,36 +11,31 @@ import {
 import { NextPage } from 'next'
 import { MainLayout, StoreCard } from '../../components/ui'
 import { Store, STORES } from '../../db/seed-data'
-
 import { GrCatalog } from 'react-icons/gr'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { allLocals } from '../../graphql/local'
-import { useQuery } from '@apollo/client'
-import { Query } from '../../generated'
+import { gql } from '@apollo/client'
+import { LocalEntity, Query } from '../../generated'
 
-const OurFoodPage: NextPage = () => {
+type Locals = {
+  locales: Array<LocalEntity>
+}
+
+const Carta: NextPage<Locals> = ({ locales }) => {
   const [filter, setFilter] = useState<string>('')
-  const [storedFilter, setStoredFilter] = useState<Store[]>([])
-  const { data, loading } = useQuery<Query>(allLocals)
-
-  console.log(data)
+  const [storedFilter, setStoredFilter] = useState<LocalEntity[]>([])
 
   useEffect(() => {
     if (filter === '') {
-      setStoredFilter(STORES)
+      setStoredFilter(locales)
     }
     {
-      const storeFiltered = STORES.filter((store) =>
-        store.name.includes(filter.toUpperCase())
+      const storeFiltered = locales.filter((local) =>
+        local.attributes?.nombre!.toUpperCase().includes(filter.toUpperCase())
       )
       setStoredFilter(storeFiltered)
     }
-  }, [filter])
-
-  if (loading) {
-    return <h1>Cargando...</h1>
-  }
+  }, [filter, locales])
 
   return (
     <MainLayout
@@ -87,15 +82,15 @@ const OurFoodPage: NextPage = () => {
                 />
               </Flex>
             ) : (
-              storedFilter.map((store) => (
+              storedFilter.map((local) => (
                 <motion.div
-                  key={store.name}
+                  key={local.attributes?.nombre}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   initial={{ opacity: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <StoreCard store={store} />
+                  <StoreCard local={local} />
                 </motion.div>
               ))
             )}
@@ -106,4 +101,65 @@ const OurFoodPage: NextPage = () => {
   )
 }
 
-export default OurFoodPage
+export default Carta
+
+import { GetStaticProps } from 'next'
+import client from '../../graphql/apolloNext'
+import { type } from 'os'
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const { data } = await client.query<Query>({
+    query: gql`
+      query {
+        locales {
+          data {
+            id
+            attributes {
+              nombre
+              direccion
+              telefono {
+                id
+                tipo
+                numero
+              }
+              url
+              imagenes {
+                data {
+                  id
+                  attributes {
+                    name
+                    url
+                  }
+                }
+              }
+              redesSociales {
+                id
+                url
+                iframe
+              }
+              tags {
+                id
+                tag
+              }
+            }
+          }
+        }
+      }
+    `
+  })
+
+  if (!data.locales?.data || data.locales?.data.length === 0)
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+
+  return {
+    props: {
+      locales: data.locales?.data
+    },
+    revalidate: 60 * 60 * 24
+  }
+}

@@ -57,7 +57,7 @@ const Home: NextPage = () => {
 
   return (
     <MainLayout title='Main Page' pageDescription='Suhi Page'>
-      <CustomCarousel items={bannerInfo} vHeigth={'100vh'} />
+      <CustomCarousel vHeigth={'100vh'} />
     </MainLayout>
   )
 }

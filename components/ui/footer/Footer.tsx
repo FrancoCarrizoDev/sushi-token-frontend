@@ -17,8 +17,6 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 export default function Footer() {
   const { data, loading } = useQuery<Query>(MainFooter)
 
-  console.log(data)
-
   if (loading) {
     return <h1>Cargando...</h1>
   }
