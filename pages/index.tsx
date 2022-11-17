@@ -1,65 +1,110 @@
-import type { NextPage } from 'next'
-import MainLayout from '../components/ui/layouts/MainLayout'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import { CustomCarousel } from '../components/ui/carousel/CustomCarousel'
-import { UserDocument } from '../generated'
-import { useQuery } from '@apollo/client'
+import type { NextPage } from "next";
 
-interface IMainBanner {
-  image: string
-  pretitle: string
-  title: string
-  summary: string
-  buttonLabel: string
-  description: string
-}
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { CustomCarousel } from "../components/ui/carousel/CustomCarousel";
+import { Query } from "../generated";
+import { GetStaticProps } from "next";
+import { gql } from "@apollo/client";
+import client from "../graphql/apolloNext";
+import { MainLayout } from "../components/ui";
 
-const bannerInfo: IMainBanner[] = [
-  {
-    image: '/assets/banner.jpg',
-    pretitle: 'YES WE HAVE',
-    title: 'THE BEST FISH STEAK',
-    summary:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque vel consequuntur possimus eaque necessitatibus, laudantium rerum nobis laboriosam obcaecati.',
-    buttonLabel: 'ORDER NOW',
-    description: 'FISH STEAK'
-  },
-  {
-    image: '/assets/banner2.jpg',
-    pretitle: 'I GET UP',
-    title: 'THE BEST SUSHI ROLL',
-    summary:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque vel consequuntur possimus eaque necessitatibus, laudantium rerum nobis laboriosam obcaecati.',
-    buttonLabel: 'ORDER NOW',
-    description: 'SUSHI ROLL'
-  },
-  {
-    image: '/assets/banner3.jpg',
-    pretitle: 'WHATEVER, ONLY',
-    title: 'I LOVE SUSHI',
-    summary:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque vel consequuntur possimus eaque necessitatibus, laudantium rerum nobis laboriosam obcaecati.',
-    buttonLabel: 'ORDER NOW',
-    description: 'COMBINATEDS'
-  }
-]
+type Props = {
+	mainData: Query | undefined;
+};
 
-const Home: NextPage = () => {
-  // const data = useQuery(UserDocument)
+const Home: NextPage<Props> = ({ mainData }) => {
+	// const data = useQuery(UserDocument)
 
-  // console.log(data)
+	// console.log(data)
 
-  // const count = useSelector((state: RootState) => state.counter.value)
+	// const count = useSelector((state: RootState) => state.counter.value)
 
-  // const hellow = useSelector((state: RootState) => state.hellow.hellow)
+	// const hellow = useSelector((state: RootState) => state.hellow.hellow)
 
-  // const dispatch = useDispatch()
+	// const dispatch = useDispatch()
 
-  return (
-    <MainLayout title='Main Page' pageDescription='Suhi Page'>
-      <CustomCarousel vHeigth={'100vh'} />
-    </MainLayout>
-  )
-}
+	return (
+		<MainLayout
+			title={mainData?.main?.data?.attributes?.titulo || "Main Page"}
+			footerData={mainData?.main?.data?.attributes?.pieDePagina}
+			pageDescription="Sushi Page"
+		>
+			<CustomCarousel vHeigth={"100vh"} data={mainData} />
+		</MainLayout>
+	);
+};
 
-export default Home
+export default Home;
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const { data } = await client.query({
+		query: gql`
+			query {
+				main {
+					data {
+						id
+						attributes {
+							titulo
+							banner {
+								id
+								descripcion
+								preTitulo
+								titulo
+								imagen {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+								subDescripcion
+								primerBoton
+								segundoBoton
+								descripcionImagen
+							}
+							pieDePagina {
+								id
+								imagenLogo {
+									data {
+										id
+										attributes {
+											name
+											url
+										}
+									}
+								}
+								descripcion
+								columnaLinks {
+									id
+									titulo
+									link {
+										id
+										nombre
+										enlaceExterno
+										url
+										pagina {
+											data {
+												id
+												attributes {
+													titulo
+													cuerpo
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		`,
+	});
+
+	return {
+		props: {
+			mainData: data,
+		},
+	};
+};
