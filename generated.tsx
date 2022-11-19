@@ -15,6 +15,7 @@ export type Scalars = {
   Float: number;
   DateTime: any;
   JSON: any;
+  MainListaMenuDynamicZoneInput: any;
   Upload: any;
 };
 
@@ -99,6 +100,7 @@ export type ComponentGeneralLink = {
   __typename?: 'ComponentGeneralLink';
   enlaceExterno?: Maybe<Scalars['Boolean']>;
   id: Scalars['ID'];
+  local?: Maybe<LocalEntityResponse>;
   nombre?: Maybe<Scalars['String']>;
   pagina?: Maybe<PageEntityResponse>;
   url?: Maybe<Scalars['String']>;
@@ -107,6 +109,7 @@ export type ComponentGeneralLink = {
 export type ComponentGeneralLinkFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentGeneralLinkFiltersInput>>>;
   enlaceExterno?: InputMaybe<BooleanFilterInput>;
+  local?: InputMaybe<LocalFiltersInput>;
   nombre?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentGeneralLinkFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentGeneralLinkFiltersInput>>>;
@@ -117,9 +120,39 @@ export type ComponentGeneralLinkFiltersInput = {
 export type ComponentGeneralLinkInput = {
   enlaceExterno?: InputMaybe<Scalars['Boolean']>;
   id?: InputMaybe<Scalars['ID']>;
+  local?: InputMaybe<Scalars['ID']>;
   nombre?: InputMaybe<Scalars['String']>;
   pagina?: InputMaybe<Scalars['ID']>;
   url?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentGeneralMultipleLink = {
+  __typename?: 'ComponentGeneralMultipleLink';
+  Link?: Maybe<Array<Maybe<ComponentGeneralLink>>>;
+  etiqueta?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+};
+
+
+export type ComponentGeneralMultipleLinkLinkArgs = {
+  filters?: InputMaybe<ComponentGeneralLinkFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentGeneralSeo = {
+  __typename?: 'ComponentGeneralSeo';
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  keywords?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type ComponentGeneralSeoInput = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  keywords?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type ComponentGeneralTelefono = {
@@ -252,6 +285,12 @@ export enum Enum_Componentinterfazredessociales_Nombre {
   Twitter = 'twitter'
 }
 
+export type Error = {
+  __typename?: 'Error';
+  code: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+};
+
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
@@ -281,7 +320,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentGeneralColumnaDeLinks | ComponentGeneralFooter | ComponentGeneralImagen | ComponentGeneralLink | ComponentGeneralTelefono | ComponentInterfazBanner | ComponentInterfazRedesSociales | ComponentInterfazTags | Greeting | I18NLocale | Local | Main | Page | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentGeneralColumnaDeLinks | ComponentGeneralFooter | ComponentGeneralImagen | ComponentGeneralLink | ComponentGeneralMultipleLink | ComponentGeneralSeo | ComponentGeneralTelefono | ComponentInterfazBanner | ComponentInterfazRedesSociales | ComponentInterfazTags | Greeting | I18NLocale | Local | Main | Page | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Greeting = {
   __typename?: 'Greeting';
@@ -517,8 +556,10 @@ export type LocalInput = {
 
 export type Main = {
   __typename?: 'Main';
+  SEO?: Maybe<ComponentGeneralSeo>;
   banner?: Maybe<Array<Maybe<ComponentInterfazBanner>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  listaMenu?: Maybe<Array<Maybe<MainListaMenuDynamicZone>>>;
   pieDePagina?: Maybe<ComponentGeneralFooter>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   titulo?: Maybe<Scalars['String']>;
@@ -544,11 +585,15 @@ export type MainEntityResponse = {
 };
 
 export type MainInput = {
+  SEO?: InputMaybe<ComponentGeneralSeoInput>;
   banner?: InputMaybe<Array<InputMaybe<ComponentInterfazBannerInput>>>;
+  listaMenu?: InputMaybe<Array<Scalars['MainListaMenuDynamicZoneInput']>>;
   pieDePagina?: InputMaybe<ComponentGeneralFooterInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   titulo?: InputMaybe<Scalars['String']>;
 };
+
+export type MainListaMenuDynamicZone = ComponentGeneralLink | ComponentGeneralMultipleLink | Error;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -751,11 +796,13 @@ export type MutationUploadArgs = {
 
 export type Page = {
   __typename?: 'Page';
+  SEO?: Maybe<ComponentGeneralSeo>;
   createdAt?: Maybe<Scalars['DateTime']>;
   cuerpo?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   titulo?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
 };
 
 export type PageEntity = {
@@ -785,12 +832,15 @@ export type PageFiltersInput = {
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   titulo?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
 };
 
 export type PageInput = {
+  SEO?: InputMaybe<ComponentGeneralSeoInput>;
   cuerpo?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   titulo?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
 };
 
 export type Pagination = {

@@ -1,22 +1,26 @@
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
 import { FC, ReactNode } from "react";
-import { ComponentGeneralFooter, Maybe } from "../../../generated";
+import {
+	ComponentGeneralFooter,
+	ComponentGeneralSeo,
+	Maybe,
+} from "../../../generated";
 import { IMenuItem } from "../../../interfaces";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 
 interface Props {
-	title: string;
+	pageTitle: string;
+	SEO: Maybe<ComponentGeneralSeo | undefined>;
 	footerData?: Maybe<ComponentGeneralFooter | undefined>;
-	pageDescription: string;
 	imageFullUrl?: string;
 	children: ReactNode;
 }
 
 const MENU: IMenuItem[] = [
 	{
-		label: "Home",
+		label: "Inicio",
 		href: "/",
 	},
 	{
@@ -39,22 +43,21 @@ const MENU: IMenuItem[] = [
 
 const MainLayout: FC<Props> = ({
 	children,
-	title,
-	pageDescription,
+	pageTitle,
 	imageFullUrl,
 	footerData,
+	SEO,
 }) => {
-	console.clear();
-	console.log({ footerData });
 	return (
 		<>
 			<Head>
-				<title>{title}</title>
+				<title>{SEO?.title!}</title>
+				<meta property="keywords" content={SEO?.keywords!} />
+				<meta name="description" content={SEO?.description!} />
 
-				<meta name="description" content={pageDescription} />
-
-				<meta name="og:title" content={title} />
-				<meta name="og:description" content={pageDescription} />
+				<meta name="og:title" content={SEO?.title!} />
+				<meta property="og:keywords" content={SEO?.keywords!} />
+				<meta name="og:description" content={SEO?.description!} />
 
 				{imageFullUrl && (
 					<meta name="og:image" content={imageFullUrl} />
@@ -69,7 +72,7 @@ const MainLayout: FC<Props> = ({
 					width={"100%"}
 					zIndex="1"
 				>
-					<Navbar menu={MENU} title={title} />
+					<Navbar menu={MENU} title={"SushiToken"} />
 				</Box>
 
 				<Box flex={1} as="main">

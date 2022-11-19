@@ -23,11 +23,13 @@ const Home: NextPage<Props> = ({ mainData }) => {
 
 	// const dispatch = useDispatch()
 
+	console.log({ mainData });
+
 	return (
 		<MainLayout
-			title={mainData?.main?.data?.attributes?.titulo || "Main Page"}
+			pageTitle={mainData?.main?.data?.attributes?.titulo || "Main Page"}
 			footerData={mainData?.main?.data?.attributes?.pieDePagina}
-			pageDescription="Sushi Page"
+			SEO={mainData?.main?.data?.attributes?.SEO}
 		>
 			<CustomCarousel vHeigth={"100vh"} data={mainData} />
 		</MainLayout>
@@ -46,6 +48,48 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 						id
 						attributes {
 							titulo
+							listaMenu {
+								... on ComponentGeneralLink {
+									nombre
+									enlaceExterno
+									url
+									id
+									pagina {
+										data {
+											attributes {
+												url
+											}
+										}
+									}
+									local {
+										data {
+											attributes {
+												url
+											}
+										}
+									}
+								}
+								... on ComponentGeneralMultipleLink {
+									id
+									Link {
+										pagina {
+											data {
+												attributes {
+													url
+												}
+											}
+										}
+										local {
+											data {
+												attributes {
+													url
+												}
+											}
+										}
+									}
+									etiqueta
+								}
+							}
 							banner {
 								id
 								descripcion
@@ -94,6 +138,12 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 										}
 									}
 								}
+							}
+							SEO {
+								id
+								title
+								keywords
+								description
 							}
 						}
 					}

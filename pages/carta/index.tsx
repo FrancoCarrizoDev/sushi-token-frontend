@@ -13,6 +13,9 @@ import { GrCatalog } from "react-icons/gr";
 import { AnimatePresence, motion } from "framer-motion";
 import { gql } from "@apollo/client";
 import { LocalEntity, Query } from "../../generated";
+import { GetStaticProps } from "next";
+import client from "../../graphql/apolloNext";
+import useSearch from "../../hooks/useSearch";
 
 type Locals = {
 	locales: Array<LocalEntity>;
@@ -23,7 +26,7 @@ const Carta: NextPage<Locals> = ({ locales }) => {
 
 	return (
 		<MainLayout
-			title="Nuestros locales"
+			pageTitle="Nuestros locales"
 			pageDescription="Disfruta de las cartas de todos nuestros locales"
 		>
 			<Box
@@ -91,10 +94,6 @@ const Carta: NextPage<Locals> = ({ locales }) => {
 };
 
 export default Carta;
-
-import { GetStaticProps } from "next";
-import client from "../../graphql/apolloNext";
-import useSearch from "../../hooks/useSearch";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
 	const { data } = await client.query<Query>({
